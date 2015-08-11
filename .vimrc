@@ -31,7 +31,7 @@ set hidden
 nnoremap <leader>m :bnext<CR>
 nnoremap <leader>n :bprevious<CR>
 nnoremap <leader>b :enew<cr>
-nnoremap <leader>q :bp<cr>:bd #<cr>
+nnoremap <leader>q :bp<cr>
 
 "firefox-like tab navigation
 nnoremap <C-tab>    :tabnext<CR>
