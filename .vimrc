@@ -1,6 +1,10 @@
 "automatic reoloading of .vimrc
 autocmd! bufwritepost .vimrc source %
 
+"Setup Pathogen to manage the plugins    
+execute pathogen#infect()
+call pathogen#helptags()
+
 
 "Rebind <Leader> key
 let mapleader=","
@@ -11,25 +15,32 @@ set guioptions-=T   "remove the icon bar
 " 'hide' pale gray areas by ~/.gtkrc-2.0
 
 
-"firefox-like tab navigation
-"nnoremap <C-tab>   :tabnext<CR>
-"nnoremap <C-S-tab> :tabprevious<CR>
+set ignorecase
 
 " vim-airline
 set laststatus=2
-let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols = 'unicode'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = "murmur"
 let g:airline_powerline_fonts = 1
+let g:airline_symbols.space = "\ua0"
 
 set hidden
-nnoremap <C-tab>   :bnext<CR>
-nnoremap <C-S-tab> :bprevious<CR>
-nmap <leader>t :enew<cr>
+"nnoremap <C-tab>   :bnext<CR>
+"nnoremap <C-S-tab> :bprevious<CR>
+nnoremap <leader>m :bnext<CR>
+nnoremap <leader>n :bprevious<CR>
+nnoremap <leader>b :enew<cr>
 nnoremap <leader>q :bp<cr>:bd #<cr>
 
+"firefox-like tab navigation
+nnoremap <C-tab>    :tabnext<CR>
+nnoremap <C-S-tab>  :tabprevious<CR>
+nnoremap <C-S-T>    :tabe<CR>
+
 "set swap directory:
-set directory=~/.vim/swap
+set noswapfile
+"set directory=~/.vim/swap
 
 "better copy & paste behaviour
 "set pastetoggle=<F2>
@@ -82,6 +93,7 @@ nmap Q gqap
 set history=700
 set undolevels=700
 
+
 " Tabstops
 set tabstop=4
 set softtabstop=4
@@ -89,10 +101,12 @@ set shiftwidth=4
 set shiftround
 set expandtab
 
-"Setup Pathogen to manage the plugins    
-execute pathogen#infect()
+set listchars=tab:▸\ ,nbsp:_,trail:.
+set list
 
-nmap <leader>l iprint "\n{}\n".format()<Esc>i
+
+
+nmap <leader>l oprint "\n{}\n".format()<Esc>i
 
 "NERDTree
 nmap <leader>nt :NERDTree<CR>
@@ -116,16 +130,16 @@ set wildignore+=*_build/*
 set wildignore+=*/coverage/*
 
 "Jedi setup
-" let g:jedi#use_splits_not_buffers = "right"
+set completeopt-=preview "disable definitions window (very slow)
+let g:jedi#use_splits_not_buffers = "right"
+let g:jedi#show_call_signatures = "0"
 let g:pymode_rope_lookup_project = 0
 let g:pymode_rope = 0
 let g:pymode_options_colorcolumn = 0
-" jedi-vim disable documentation on autocomplete
-autocmd FileType python setlocal completeopt-=preview
 let g:pymode = 1
 let g:pymode_trim_whitespaces = 1
 let g:pymode_options = 1
-let g:pymode_folding = 0
+"let g:pymode_folding = 0
 let g:pymode_lint_unmodified = 1
 let g:pymode_lint_ignore = "E501"
 let g:pymode_lint_on_fly = 0
@@ -138,12 +152,6 @@ let g:pymode_rope_lookup_project = 0
 let g:pymode_rope_regenerate_on_write = 0
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 0
-let g:pymode_rope_completion_bind = '<C-Space>'
-
-" jedi-vim
-let g:jedi#show_call_signatures = "0"
-let g:jedi#usages_command = "<leader>N"
-
 ""Python-mode setup
 "map <Leader>g :call RopeGotoDefinition()<CR>
 "let ropevim_enable_shortcuts=1
