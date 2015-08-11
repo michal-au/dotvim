@@ -28,10 +28,10 @@ let g:airline_symbols.space = "\ua0"
 set hidden
 "nnoremap <C-tab>   :bnext<CR>
 "nnoremap <C-S-tab> :bprevious<CR>
-nnoremap <leader>m :bnext<CR>
-nnoremap <leader>n :bprevious<CR>
+nnoremap <leader>s :bnext<CR>
+nnoremap <leader>a :bprevious<CR>
 nnoremap <leader>b :enew<cr>
-nnoremap <leader>q :bp<cr>
+nnoremap <leader>q :bd<cr>
 
 "firefox-like tab navigation
 nnoremap <C-tab>    :tabnext<CR>
@@ -181,6 +181,10 @@ let g:pymode_rope_complete_on_dot = 0
 
 "Python_editing.vim - folding setup
 set nofoldenable
+
+
+" CtrlP Setup
+map <Leader>w :CtrlPBuffer<cr>
 
 "Python execute code
 autocmd FileType python nnoremap <buffer> <F9> :exec '!clear;python' shellescape(@%, 1)<CR>
