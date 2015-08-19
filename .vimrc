@@ -9,6 +9,7 @@ call pathogen#helptags()
 "Rebind <Leader> key
 let mapleader=","
 
+set guioptions-=e
 set guioptions-=T   "remove the icon bar
 :set guioptions-=r  "remove right-hand scroll bar
 :set guioptions-=L  "remove left-hand scroll bar
@@ -20,23 +21,36 @@ set ignorecase
 " vim-airline
 set laststatus=2
 let g:Powerline_symbols = 'unicode'
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline_theme = "murmur"
 let g:airline_powerline_fonts = 1
 let g:airline_symbols.space = "\ua0"
 
+let g:jedi#goto_command = "<leader>jd"
+
 set hidden
 "nnoremap <C-tab>   :bnext<CR>
 "nnoremap <C-S-tab> :bprevious<CR>
-nnoremap <leader>s :bnext<CR>
-nnoremap <leader>a :bprevious<CR>
+nnoremap <leader>d :tabnext<CR>
+nnoremap <leader>a :tabprevious<CR>
+nnoremap <leader>w :CtrlSpaceGoUp<CR>
+nnoremap <leader>s :CtrlSpaceGoDown<CR>
 nnoremap <leader>b :enew<cr>
-nnoremap <leader>q :bd<cr>
+nnoremap <leader>q :bp<cr>:bd #<cr>
+nnoremap <leader>z :b#<cr>
+nnoremap <leader>t :tabe<CR>
 
 "firefox-like tab navigation
-nnoremap <C-tab>    :tabnext<CR>
-nnoremap <C-S-tab>  :tabprevious<CR>
-nnoremap <C-S-T>    :tabe<CR>
+"nnoremap <C-tab>    :tabnext<CR>
+"nnoremap <C-S-tab>  :tabprevious<CR>
+"nnoremap <C-S-T>    :tabe<CR>
+
+"Ctrl space
+set nocompatible
+
+" CtrlP Setup
+map <Leader>e :CtrlPBuffer<cr>
+
 
 "set swap directory:
 set noswapfile
@@ -70,7 +84,7 @@ set splitright
 
 "Color scheme
 set t_Co=256
-colorscheme wombat256mod
+colorscheme michal
 
 "syntax highlighting
 filetype off
@@ -106,7 +120,7 @@ set list
 
 
 
-nmap <leader>l oprint "\n{}\n".format()<Esc>i
+nmap <leader>l oprint "\n\x1b[33m{}\x1b[0m\n".format()<Esc>i
 
 "NERDTree
 nmap <leader>nt :NERDTree<CR>
@@ -182,9 +196,6 @@ let g:pymode_rope_complete_on_dot = 0
 "Python_editing.vim - folding setup
 set nofoldenable
 
-
-" CtrlP Setup
-map <Leader>w :CtrlPBuffer<cr>
 
 "Python execute code
 autocmd FileType python nnoremap <buffer> <F9> :exec '!clear;python' shellescape(@%, 1)<CR>
