@@ -1,13 +1,13 @@
 "automatic reoloading of .vimrc
 autocmd! bufwritepost .vimrc source %
 
-"Setup Pathogen to manage the plugins    
+"Setup Pathogen to manage the plugins
 execute pathogen#infect()
 call pathogen#helptags()
 
 
 "Rebind <Leader> key
-let mapleader=","
+let mapleader= "\<Space>"
 
 set guioptions-=e
 set guioptions-=T   "remove the icon bar
@@ -15,6 +15,8 @@ set guioptions-=T   "remove the icon bar
 :set guioptions-=L  "remove left-hand scroll bar
 " 'hide' pale gray areas by ~/.gtkrc-2.0
 
+" start with open folds
+set foldlevelstart=20
 
 set ignorecase
 
@@ -147,25 +149,25 @@ set wildignore+=*/coverage/*
 set completeopt-=preview "disable definitions window (very slow)
 let g:jedi#use_splits_not_buffers = "right"
 let g:jedi#show_call_signatures = "0"
-let g:pymode_rope_lookup_project = 0
-let g:pymode_rope = 0
-let g:pymode_options_colorcolumn = 0
-let g:pymode = 1
-let g:pymode_trim_whitespaces = 1
-let g:pymode_options = 1
-"let g:pymode_folding = 0
-let g:pymode_lint_unmodified = 1
-let g:pymode_lint_ignore = "E501"
-let g:pymode_lint_on_fly = 0
-let g:pymode_virtualenv = 1
-let g:pymode_doc = 1
-let g:pymode_doc_key = 'K'
+
 " rope settings
 let g:pymode_rope = 0
 let g:pymode_rope_lookup_project = 0
 let g:pymode_rope_regenerate_on_write = 0
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 0
+let g:pymode_options_colorcolumn = 0
+"let g:pymode = 1
+let g:pymode_trim_whitespaces = 1
+"let g:pymode_options = 1
+"let g:pymode_folding = 0
+let g:pymode_lint_unmodified = 1
+let g:pymode_lint_ignore = "E501"
+"let g:pymode_lint_on_fly = 0
+"let g:pymode_virtualenv = 1
+"let g:pymode_doc = 1
+"let g:pymode_doc_key = 'K'
+
 ""Python-mode setup
 "map <Leader>g :call RopeGotoDefinition()<CR>
 "let ropevim_enable_shortcuts=1
@@ -194,8 +196,14 @@ let g:pymode_rope_complete_on_dot = 0
 "inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 
 "Python_editing.vim - folding setup
-set nofoldenable
+"set nofoldenable
 
 
 "Python execute code
 autocmd FileType python nnoremap <buffer> <F9> :exec '!clear;python' shellescape(@%, 1)<CR>
+
+"Easy motion
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
